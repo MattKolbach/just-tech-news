@@ -1,0 +1,14 @@
+//import hte Sequalize constructor from the library
+const Sequelize = require('sequalize');
+
+require('dotenv').config();
+
+//crate connection to our database, pass in your MySQL information for username and password
+const sequalize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
+    host: 'localhost',
+    dialect: 'mysql',
+    port: 3306
+});
+
+
+module.exports = sequelize;
