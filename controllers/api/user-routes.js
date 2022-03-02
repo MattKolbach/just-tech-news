@@ -73,6 +73,7 @@ router.post("/", (req, res) => {
         res.json(dbUserData);
       });
     })
+  })
 
 /////  LOGIN  /////
 router.post("/login", (req, res) => {
@@ -149,5 +150,18 @@ router.delete("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+/////  LOG OUT  /////
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() =>{
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
+});
+
 
 module.exports = router;
